@@ -30,7 +30,14 @@ var verbs = {
 	},
 	"walk": {alias: "move"},
 	"travel": {alias: "move"},
-	"go": {alias: "move"}
+	"go": {alias: "move"},
+	
+	"xyzzy": {
+		requiredArgs: 0,
+		action: function(args){
+			Error("Xyzzy is a reference to Zork that will not work here.");
+		}
+	}
 };
 
 // rooms //
@@ -42,10 +49,13 @@ var rooms = {
 		state: 0,
 		"description-page": "rooms/first.html",
 		transition: function(a){switch(a){
-			case "moved north": // the player attempts to leave to the north //
+			case "moved north": // the player typed 'go north' in this room //
 				ForState(0, 1, function(){
-					Before("You slowly creak open the door, letting in fresh air and light. At first, you are blinded, but soon, your eyes adjust...")
+					Before("You slowly creak open the door, letting in fresh air and light. At first, you are blinded, but soon, your eyes adjust...");
 				});
+				break;
+			case "entered south": // the player typed 'go south' in a different room and got to this one //
+				
 				break;
 		}},
 		attached: {
@@ -54,7 +64,7 @@ var rooms = {
 	},
 	
 	second: {
-		name: "Second Room",
+		name: "Open Field",
 		"description-page": "rooms/second.html",
 		attached: {
 			south: "first"
