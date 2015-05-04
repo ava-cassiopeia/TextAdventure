@@ -32,6 +32,13 @@ var verbs = {
 	"travel": {alias: "move"},
 	"go": {alias: "move"},
 	
+	"look": {
+		requiredArgs: 0,
+		action: function(args){
+			DisplayRoom(currentRoom);
+		}
+	},
+	
 	"xyzzy": {
 		requiredArgs: 0,
 		action: function(args){
