@@ -5,7 +5,7 @@ body{
 }
 
 .content{
-	width: 50%;
+	width: 600px;
 	margin: 0 auto 0 auto;
 	background: #fff;
 	padding: 10px;
@@ -22,4 +22,11 @@ body{
 
 #error{
 	color: #aa0000;
+}
+
+@media screen and (max-width: 600px){
+	.content{
+		width: 100%;
+		margin: 0;
+	}
 }
