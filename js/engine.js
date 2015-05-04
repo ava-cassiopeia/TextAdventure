@@ -55,6 +55,7 @@ function DisplayRoom(room){
 
 function TakeAction(){
 	var rawAction = $("#action-input").val();
+	rawAction = rawAction.toLowerCase();
 	var splitAction = rawAction.trim().split(' ');
 	
 	if(splitAction.length < 1){
