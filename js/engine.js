@@ -173,7 +173,7 @@ function OutputRoomItems(){
 		for(var index in currentRoom.items){
 			var amount = currentRoom.items[index];
 			
-			if(amount > 1){
+			if(amount == 1){
 				output += "There is a " + items[index].name + " lying here.<br />";
 			}else{
 				output += "There are " + amount + " " + items[index].plural + " lying here.<br />";
