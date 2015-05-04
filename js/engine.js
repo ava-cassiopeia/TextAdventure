@@ -50,15 +50,30 @@ function TakeAction(){
 }
 
 function ParseAction(verb, splitAction){
+	// determine verb //
+	var finalVerb;
 	if(typeof(verbs[verb]) !== 'undefined'){
-		if(!(splitAction.length - 1 < verbs[verb].requiredArgs)){
-			verbs[verb].action(splitAction);
+		var possibleVerb = verbs[verb];
+		if(isset(possibleVerb.alias)){
+			finalVerb = verbs[possibleVerb.alias];
 		}else{
-			alert("You must specify " + verbs[verb].requiredArgs + " arguments for that verb.");
+			finalVerb = possibleVerb;
 		}
 	}else{
 		alert(verb + " is not a recognized verb.");
+		return;
 	}
+	
+	// run verb //
+	if(!(splitAction.length - 1 < finalVerb.requiredArgs)){
+		finalVerb.action(splitAction);
+	}else{
+		alert("You must specify " + finalVerb.requiredArgs + " arguments for that verb.");
+	}
+}
+
+function isset(object){
+	return typeof(object) !== 'undefined';
 }
 
 $(document).ready(Initialize);

@@ -18,14 +18,19 @@ var verbs = {
 	"move": {
 		requiredArgs: 1,
 		action: function(args){
-			console.log(args);
 			var target = args[1];
 			
-			var newRoom = rooms[currentRoom.attached[target]];
-			currentRoom = newRoom;
-			DisplayRoom(newRoom);
+			if(typeof(rooms[currentRoom.attached[target]]) !== 'undefined'){
+				var newRoom = rooms[currentRoom.attached[target]];
+				currentRoom = newRoom;
+				DisplayRoom(newRoom);
+			}else{
+				alert("You cannot move that direction, there is nothing there.");
+			}
 		}
-	}
+	},
+	"walk": {alias: "move"},
+	"travel": {alias: "move"}
 };
 
 // rooms //
@@ -43,8 +48,15 @@ var rooms = {
 			north: "second"
 		}
 	},
-	second: {
+	second:{
+		name: "Second Room",
+		description: "You are now standing in the second room.",
+		attached: {
+			south: "first"
+		}
+	}
+	/*second: {
 		name: "Second Room",
 		"description-page": "rooms/second.html"
-	}
+	}*/
 };
