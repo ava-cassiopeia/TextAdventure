@@ -12,7 +12,9 @@
 |			The config below maps engine output
 |			to CSS selector compliant naming
 |			of DOM objects. As well as general
-|			Engine configurations per run.
+|			Engine configurations per run. This
+|			allows you to make your own index
+|			for this engine.
 |=======================================================================
 */
 
@@ -64,6 +66,7 @@ var before = "";
 |			Alternately, an alias can be specified,
 |			which allows that verb to be an alias
 |			for the specified verb.
+|			Verbs should all be lower case.
 |=======================================================================
 */ 
 
@@ -91,6 +94,28 @@ var verbs = {
 		requiredArgs: 0,
 		action: function(args){
 			Error("Xyzzy is a reference to Zork that will not work here. Good try though.");
+		}
+	}
+};
+
+/*
+|=======================================================================
+| Items
+|
+| Notes:	These aren't actually a list
+|			of items, but rather, a list
+|			of blueprints of items, to
+|			be copied at the start of the 
+|			game.
+|=======================================================================
+*/
+
+var items = {
+	"apple": {
+		name: "apple",
+		plural: "apples",
+		examine: function(){
+			return "A glistening, red fruit.";
 		}
 	}
 };
@@ -134,13 +159,16 @@ var rooms = {
 			}
 		},
 		"description-page": "rooms/first.html",
-		transition: function(a){switch(a){
-			case "moved north": // the player typed 'go north' in this room //
+		transition: function(a){switch(a){ // custom transition text //
+			case "moved north":
 				ForState(0, 1, function(){
 					Before("You slowly creak open the door, letting in fresh air and light. At first, you are blinded, but soon, your eyes adjust...");
 				});
 				break;
 		}},
+		items:{
+			"apple": 1
+		},
 		attached: {
 			north: "second"
 		},

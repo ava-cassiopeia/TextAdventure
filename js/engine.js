@@ -13,7 +13,7 @@
 
 var currentRoom;
 
-function Initialize(){
+function Initialize(){	
 	// the game will always start with the room labelled "first" //
 	
 	currentRoom = rooms.first;
@@ -34,8 +34,10 @@ function DisplayRoom(room){
 	$(config.html.before).html(before);
 	$(config.html.error).html('');
 	
+	var descriptionOutput = "";
 	if(typeof(room.description) !== 'undefined'){
-		$(config.html.description).html(room.description);
+		descriptionOutput += room.description;
+		$(config.html.description).html(room.description + OutputRoomItems());
 	}else{
 		/*var baseURL = window.location.pathname;
 		var r = /[^\/]*$/;
@@ -45,7 +47,7 @@ function DisplayRoom(room){
 			type: "GET",
 			url: room['description-page']
 		}).done(function(msg){
-			$(config.html.description).html(msg);
+			$(config.html.description).html(msg + OutputRoomItems());
 			
 			if(isset(currentRoom.content)){
 				for(var index in currentRoom.content){
@@ -162,6 +164,25 @@ function TriggerTransition(transitionName){
 	if(isset(currentRoom.transition)){
 		currentRoom.transition(transitionName);
 	}
+}
+
+function OutputRoomItems(){
+	var output = "<p>";
+	
+	if(isset(currentRoom.items)){
+		for(var index in currentRoom.items){
+			var amount = currentRoom.items[index];
+			
+			if(amount > 1){
+				output += "There is a " + items[index].name + " lying here.<br />";
+			}else{
+				output += "There are " + amount + " " + items[index].plural + " lying here.<br />";
+			}
+		}
+	}
+	output += "</p>";
+	
+	return output;
 }
 
 // helpers //
