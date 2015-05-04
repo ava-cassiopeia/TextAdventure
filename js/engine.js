@@ -60,7 +60,7 @@ function TakeAction(){
 	// check custom actions //
 	
 	var foundCustom = false;
-	if(isset(currentRoom.customActions[rawAction])){
+	if(isset(currentRoom.customActions) && isset(currentRoom.customActions[rawAction])){
 		currentRoom.customActions[rawAction]();
 		foundCustom = true;
 	}
