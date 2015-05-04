@@ -1,10 +1,19 @@
+/*
+|=================================================
+| TextAdventure Javascript Engine
+| Main Engine
+| Author:	Ivan Mattie
+|
+| Notes:	In general, this file shouldn't
+|			be modified when adding content
+|			and features to the game. That 
+|			should all be done in data.js.
+|=================================================
+*/
+
 var currentRoom;
 
 function Initialize(){
-	if(!FileReader){
-		alert("Your browser does not support the frameworks used for this!");
-		return;
-	}
 	// the game will always start with the room labelled "first" //
 	
 	currentRoom = rooms.first;
@@ -107,6 +116,32 @@ function ParseAction(verb, splitAction, foundCustom){
 }
 
 // main functions //
+
+function Move(direction){
+	if(isset(rooms[currentRoom.attached[direction]])){
+		var newRoom = rooms[currentRoom.attached[direction]];
+		
+		ChangeRooms(newRoom, direction);
+	}else{
+		Error("You cannot move that direction, there is nothing there.");
+	}
+}
+
+function ChangeRooms(newRoom, direction){		
+	// trigger leaving action //
+	if(isset(direction)){
+		TriggerTransition("moved " + direction);
+	}
+	
+	currentRoom = newRoom;
+	
+	// trigger enter action //
+	if(isset(direction)){
+		TriggerTransition("entered " + direction);
+	}
+	
+	DisplayRoom(newRoom);
+}
 
 function Before(basicString){
 	before += "<p>" + basicString + "</p>";

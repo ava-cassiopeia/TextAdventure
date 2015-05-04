@@ -1,8 +1,56 @@
-// globals //
+/*
+|=================================================
+| TextAdventure Javascript Engine
+| Game Data and Configuration
+| Author:	Ivan Mattie
+|
+| Notes:	Change anything below not under
+|			'globals' to modify the way the
+|			game works. This is the file that
+|			has most game information.
+|=================================================
+*/
+
+/*
+|=================================================
+| Global Data
+|
+| Notes:	List of variables that are
+|			considered global variables.
+|			In general these should not
+|			Be modified.
+|=================================================
+*/
 
 var before = "";
 
-// verbs // 
+/*
+|=================================================
+| Verbs
+|
+| Notes:	Variable that holds all of
+|			the verbs the player can type.
+|
+|			All new verbs must either have:
+|			
+|			- requiredArgs: int
+|			- action: function(args)
+|
+|			or
+|
+|			- alias: string
+|
+|			Where requiredArgs is the amount
+|			of arguments after the verb (a user's
+|			command goes "[verb] [arg1] [arg2] ...")
+|			that the player must specify, and action
+|			is the function that runs when they type
+|			That verb.
+|			Alternately, an alias can be specified,
+|			which allows that verb to be an alias
+|			for the specified verb.
+|=================================================
+*/ 
 
 var verbs = {
 	"move": {
@@ -10,21 +58,7 @@ var verbs = {
 		action: function(args){
 			var target = args[1];
 			
-			if(isset(rooms[currentRoom.attached[target]])){
-				var newRoom = rooms[currentRoom.attached[target]];
-				
-				// trigger leaving action //
-				TriggerTransition("moved " + target);
-				
-				currentRoom = newRoom;
-				
-				// trigger enter action //
-				TriggerTransition("entered " + target);			
-				
-				DisplayRoom(newRoom);
-			}else{
-				Error("You cannot move that direction, there is nothing there.");
-			}
+			Move(target);
 		}
 	},
 	"walk": {alias: "move"},
@@ -46,7 +80,32 @@ var verbs = {
 	}
 };
 
-// rooms //
+/*
+|=======================================================================
+| Rooms
+|
+| Notes:	List of rooms. All rooms must have
+|			the following:
+|			
+|			- name: string
+|			- state: int
+|			- (description|description-page): (string|url/string)
+|			- content: [list of content mods]
+|			- attached: [list of attached rooms]
+|
+|			Where name is the user-friendly name
+|			of the room, state is the roomState,
+|			which you can usuially set to 0, and 
+|			content is a list of state-dependent
+|			data to be placed into the room 
+|			descritpion.
+|			Then you can either specify a HTML
+|			compliant string, or the path to a
+|			HTML file to serve as the description
+|			of the room, and an attached list of
+|			connections to other rooms, if any.
+|=======================================================================
+*/
 
 var rooms = {
 	
