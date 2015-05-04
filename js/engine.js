@@ -22,7 +22,7 @@ function Initialize(){
 	
 	// setup action handler //
 	
-	$("#action-input").keypress(function(e){
+	$(config.html.input).keypress(function(e){
 		if(e.charCode == 13){ // [return] was pressed //
 			TakeAction();
 		}
@@ -30,12 +30,12 @@ function Initialize(){
 }
 
 function DisplayRoom(room){
-	$("#name").text(room.name);
-	$("#before").html(before);
-	$("#error").html('');
+	$(config.html.roomname).text(room.name);
+	$(config.html.before).html(before);
+	$(config.html.error).html('');
 	
 	if(typeof(room.description) !== 'undefined'){
-		$("#description").html(room.description);
+		$(config.html.description).html(room.description);
 	}else{
 		/*var baseURL = window.location.pathname;
 		var r = /[^\/]*$/;
@@ -45,7 +45,7 @@ function DisplayRoom(room){
 			type: "GET",
 			url: room['description-page']
 		}).done(function(msg){
-			$("#description").html(msg);
+			$(config.html.description).html(msg);
 			
 			if(isset(currentRoom.content)){
 				for(var index in currentRoom.content){
@@ -65,7 +65,7 @@ function DisplayRoom(room){
 }
 
 function TakeAction(){
-	var rawAction = $("#action-input").val();
+	var rawAction = $(config.html.input).val();
 	rawAction = rawAction.toLowerCase().trim();
 	
 	// check custom actions //
@@ -87,7 +87,7 @@ function TakeAction(){
 	
 	ParseAction(verb, splitAction, foundCustom);
 	
-	$("#action-input").val('');
+	$(config.html.input).val('');
 }
 
 function ParseAction(verb, splitAction, foundCustom){
@@ -148,7 +148,7 @@ function Before(basicString){
 }
 
 function Error(errorString){
-	$("#error").html(errorString);
+	$(config.html.error).html(errorString);
 }
 
 function ForState(state, toState, action){

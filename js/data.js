@@ -1,31 +1,46 @@
 /*
-|=================================================
+|=======================================================================
 | TextAdventure Javascript Engine
 | Game Data and Configuration
 | Author:	Ivan Mattie
 |
 | Notes:	Change anything below not under
-|			'globals' to modify the way the
+|			'Global Data' to modify the way the
 |			game works. This is the file that
 |			has most game information.
-|=================================================
+|
+|			The config below maps engine output
+|			to CSS selector compliant naming
+|			of DOM objects. As well as general
+|			Engine configurations per run.
+|=======================================================================
 */
 
+var config = {
+	html: {
+		input: "#action-input",
+		roomname: "#name",
+		description: "#description",
+		before: "#before",
+		error: "#error"
+	}
+};
+
 /*
-|=================================================
+|=======================================================================
 | Global Data
 |
 | Notes:	List of variables that are
 |			considered global variables.
 |			In general these should not
 |			Be modified.
-|=================================================
+|=======================================================================
 */
 
 var before = "";
 
 /*
-|=================================================
+|=======================================================================
 | Verbs
 |
 | Notes:	Variable that holds all of
@@ -49,7 +64,7 @@ var before = "";
 |			Alternately, an alias can be specified,
 |			which allows that verb to be an alias
 |			for the specified verb.
-|=================================================
+|=======================================================================
 */ 
 
 var verbs = {
@@ -109,7 +124,7 @@ var verbs = {
 
 var rooms = {
 	
-	first: {
+	first: { // the room called "first" will always be the starting point //
 		name: "Dark Room",
 		state: 0,
 		content: {
