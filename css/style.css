@@ -1,0 +1,21 @@
+body{
+	background: #ddd;
+	font-family: Georgia, serif;
+	font-size: 15px;
+}
+
+.content{
+	width: 50%;
+	margin: 0 auto 0 auto;
+	background: #fff;
+	padding: 10px;
+}
+
+#action, #description, #before{
+	margin: 10px 0 10px 0;
+}
+
+#name{
+	font-weight: bold;
+	font-size: 30px;
+}

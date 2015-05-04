@@ -1,16 +1,6 @@
 // globals //
 
-var actions = {
-	moved_north: 0,
-	moved_east: 1,
-	moved_west: 2,
-	moved_south: 3,
-	
-	entered_from_north: 4,
-	entered_from_west: 5,
-	entered_from_east: 6,
-	entered_from_south: 7
-};
+var before = "";
 
 // verbs // 
 
@@ -19,10 +9,19 @@ var verbs = {
 		requiredArgs: 1,
 		action: function(args){
 			var target = args[1];
+			before = "";
 			
 			if(isset(rooms[currentRoom.attached[target]])){
 				var newRoom = rooms[currentRoom.attached[target]];
+				
+				// trigger leaving action //
+				TriggerTransition("moved " + target);
+				
 				currentRoom = newRoom;
+				
+				// trigger enter action //
+				TriggerTransition("entered " + target);			
+				
 				DisplayRoom(newRoom);
 			}else{
 				alert("You cannot move that direction, there is nothing there.");
@@ -36,12 +35,14 @@ var verbs = {
 // rooms //
 
 var rooms = {
+	
 	first: {
-		name: "First Room",
-		description: "This is a description of the room. It supports <code>HTML encoding</code>.",
+		name: "Dark Room",
+		state: 0,
+		description: "You are standing within a musty, dark room. ",
 		transition: function(a){switch(a){
-			case actions.moved_north: // the player attempts to leave to the north //
-				Write("You slowly creak open the door, letting in a draft.");
+			case "moved north": // the player attempts to leave to the north //
+				Before("You slowly creak open the door, letting in a draft.");
 				break;
 		}},
 		attached: {
@@ -49,16 +50,17 @@ var rooms = {
 		}
 	},
 	
-	second:{
+	third:{
 		name: "Second Room",
+		state: 0,
 		description: "You are now standing in the second room.",
 		attached: {
 			south: "first"
 		}
-	}
+	},
 	
-	/*second: {
+	second: {
 		name: "Second Room",
 		"description-page": "rooms/second.html"
-	}*/
+	}
 };

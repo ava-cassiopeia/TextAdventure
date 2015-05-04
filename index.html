@@ -14,31 +14,14 @@
 		
 		<!-- Custom -->
 		
+		<link rel='stylesheet' href='css/style.css' />
+		
 		<script src="js/data.js"></script>
 		<script src="js/engine.js"></script>
-		<style>
-			body{
-				background: #ddd;
-			}
-		
-			.content{
-				width: 50%;
-				margin: 0 auto 0 auto;
-				background: #fff;
-				padding: 10px;
-			}
-			
-			#action, #description{
-				margin: 10px 0 10px 0;
-			}
-			
-			#name{
-				font-weight: bold;
-			}
-		</style>
 	</head>
 	<body>
 		<div class='content'>
+			<div id='before'></div>
 			<div id='name'>
 				&nbsp;
 			</div>
@@ -46,7 +29,9 @@
 				&nbsp;
 			</div>
 			<div id='action'>
-				<input type='text' id='action-input' placeholder='What action will you take?' />
+				<div class='form-group'>
+					<input type='text' class='form-control' id='action-input' placeholder='What action will you take?' />
+				</div>
 			</div>
 		</div>
 	</body>

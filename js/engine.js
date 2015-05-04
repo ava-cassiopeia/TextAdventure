@@ -22,10 +22,15 @@ function Initialize(){
 
 function DisplayRoom(room){
 	$("#name").text(room.name);
+	$("#before").html(before);
 	
 	if(typeof(room.description) !== 'undefined'){
 		$("#description").html(room.description);
 	}else{
+		/*var baseURL = window.location.pathname;
+		var r = /[^\/]*$/;
+		baseURL = baseURL.replace(r, '');*/
+		
 		$.ajax({
 			type: "GET",
 			url: room['description-page']
@@ -71,6 +76,20 @@ function ParseAction(verb, splitAction){
 		alert("You must specify " + finalVerb.requiredArgs + " arguments for that verb.");
 	}
 }
+
+// main functions //
+
+function Before(basicString){
+	before += "<p>" + basicString + "</p>";
+}
+
+function TriggerTransition(transitionName){
+	if(isset(currentRoom.transition)){
+		currentRoom.transition(transitionName);
+	}
+}
+
+// helpers //
 
 function isset(object){
 	return typeof(object) !== 'undefined';
