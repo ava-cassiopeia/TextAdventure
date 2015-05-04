@@ -35,7 +35,7 @@ var verbs = {
 	"xyzzy": {
 		requiredArgs: 0,
 		action: function(args){
-			Error("Xyzzy is a reference to Zork that will not work here.");
+			Error("Xyzzy is a reference to Zork that will not work here. Good try though.");
 		}
 	}
 };
@@ -68,6 +68,14 @@ var rooms = {
 		"description-page": "rooms/second.html",
 		attached: {
 			south: "first"
+		}
+	},
+	
+	forestEntrance: {
+		name: "Forest",
+		"description-page": "rooms/forestEntrance.html",
+		attached: {
+			south: "second"
 		}
 	}
 };
