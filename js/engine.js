@@ -59,8 +59,10 @@ function TakeAction(){
 	
 	// check custom actions //
 	
+	var foundCustom = false;
 	if(isset(currentRoom.customActions[rawAction])){
 		currentRoom.customActions[rawAction]();
+		foundCustom = true;
 	}
 	
 	var splitAction = rawAction.trim().split(' ');
@@ -72,12 +74,12 @@ function TakeAction(){
 	
 	var verb = splitAction[0];
 	
-	ParseAction(verb, splitAction);
+	ParseAction(verb, splitAction, foundCustom);
 	
 	$("#action-input").val('');
 }
 
-function ParseAction(verb, splitAction){
+function ParseAction(verb, splitAction, foundCustom){
 	// determine verb //
 	var finalVerb;
 	if(isset(verbs[verb])){
@@ -88,7 +90,9 @@ function ParseAction(verb, splitAction){
 			finalVerb = possibleVerb;
 		}
 	}else{
-		Error(verb + " is not a recognized verb.");
+		if(!isset(foundCustom) || !foundCustom){
+			Error(verb + " is not a recognized verb.");
+		}
 		return;
 	}
 	

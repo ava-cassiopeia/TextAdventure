@@ -66,7 +66,7 @@ var rooms = {
 		},
 		customActions: {
 			"close door": function(){
-				if(currentRoom.state = 1){
+				if(currentRoom.state == 1){
 					currentRoom.state = 0;
 					Before('You ease closed the massive door.');
 					DisplayRoom(currentRoom);
