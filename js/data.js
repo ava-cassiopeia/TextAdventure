@@ -47,15 +47,18 @@ var rooms = {
 	first: {
 		name: "Dark Room",
 		state: 0,
+		content: {
+			'door-description': {
+				0: "",
+				1: "On one end of the room, a large door stands open, revealing a grassy field outside."
+			}
+		},
 		"description-page": "rooms/first.html",
 		transition: function(a){switch(a){
 			case "moved north": // the player typed 'go north' in this room //
 				ForState(0, 1, function(){
 					Before("You slowly creak open the door, letting in fresh air and light. At first, you are blinded, but soon, your eyes adjust...");
 				});
-				break;
-			case "entered south": // the player typed 'go south' in a different room and got to this one //
-				
 				break;
 		}},
 		attached: {
@@ -65,6 +68,8 @@ var rooms = {
 	
 	second: {
 		name: "Open Field",
+		state: 0,
+		content: {},
 		"description-page": "rooms/second.html",
 		attached: {
 			south: "first",
@@ -74,6 +79,8 @@ var rooms = {
 	
 	forestEntrance: {
 		name: "Forest",
+		state: 0,
+		content: {},
 		"description-page": "rooms/forestEntrance.html",
 		attached: {
 			south: "second"

@@ -37,6 +37,16 @@ function DisplayRoom(room){
 			url: room['description-page']
 		}).done(function(msg){
 			$("#description").html(msg);
+			
+			for(var index in currentRoom.content){
+				var values = currentRoom.content[index];
+				
+				if(isset(values[currentRoom.state])){
+					var value = currentRoom.state;
+					
+					$("#" + index).html(value);
+				}
+			}
 		});
 	}
 }
