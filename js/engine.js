@@ -38,13 +38,15 @@ function DisplayRoom(room){
 		}).done(function(msg){
 			$("#description").html(msg);
 			
-			for(var index in currentRoom.content){
-				var values = currentRoom.content[index];
-				
-				if(isset(values[currentRoom.state])){
-					var value = values[currentRoom.state];
+			if(isset(currentRoom.content)){
+				for(var index in currentRoom.content){
+					var values = currentRoom.content[index];
 					
-					$("#" + index).html(value);
+					if(isset(values[currentRoom.state])){
+						var value = values[currentRoom.state];
+						
+						$("#" + index).html(value);
+					}
 				}
 			}
 		});
