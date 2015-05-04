@@ -83,6 +83,13 @@ function Before(basicString){
 	before += "<p>" + basicString + "</p>";
 }
 
+function ForState(state, toState, action){
+	if(currentRoom.state == state){
+		action();
+		currentRoom.state = toState;
+	}
+}
+
 function TriggerTransition(transitionName){
 	if(isset(currentRoom.transition)){
 		currentRoom.transition(transitionName);

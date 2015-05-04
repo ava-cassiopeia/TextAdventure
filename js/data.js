@@ -29,7 +29,8 @@ var verbs = {
 		}
 	},
 	"walk": {alias: "move"},
-	"travel": {alias: "move"}
+	"travel": {alias: "move"},
+	"go": {alias: "move"}
 };
 
 // rooms //
@@ -39,10 +40,10 @@ var rooms = {
 	first: {
 		name: "Dark Room",
 		state: 0,
-		description: "You are standing within a musty, dark room. ",
+		"description-page": "rooms/first.html",
 		transition: function(a){switch(a){
 			case "moved north": // the player attempts to leave to the north //
-				Before("You slowly creak open the door, letting in a draft.");
+				ForState(0, 1, Before("You slowly creak open the door, letting in fresh air and light. At first, you are blinded, but soon, your eyes adjust..."));
 				break;
 		}},
 		attached: {
@@ -50,17 +51,11 @@ var rooms = {
 		}
 	},
 	
-	third:{
+	second: {
 		name: "Second Room",
-		state: 0,
-		description: "You are now standing in the second room.",
+		"description-page": "rooms/second.html",
 		attached: {
 			south: "first"
 		}
-	},
-	
-	second: {
-		name: "Second Room",
-		"description-page": "rooms/second.html"
 	}
 };
