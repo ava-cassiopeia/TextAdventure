@@ -1,0 +1,44 @@
+<!doctype HTML>
+
+<html>
+	<head>
+		<title>Text Adventure</title>
+		
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		
+		<!-- Custom -->
+		
+		<script src="js/data.js"></script>
+		<script src="js/engine.js"></script>
+		<style>
+			body{
+				background: #ddd;
+			}
+		
+			.content{
+				width: 50%;
+				margin: 0 auto 0 auto;
+				background: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='content'>
+			<div id='name'>
+				&nbsp;
+			</div>
+			<div id='description'>
+				&nbsp;
+			</div>
+			<div id='action'>
+				<input type='text' id='action-input' placeholder='What action will you take?' />
+			</div>
+		</div>
+	</body>
+</html>
