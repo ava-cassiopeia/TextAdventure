@@ -63,6 +63,17 @@ var rooms = {
 		}},
 		attached: {
 			north: "second"
+		},
+		customActions: {
+			"close door": function(){
+				if(currentRoom.state = 1){
+					currentRoom.state = 0;
+					Before('You ease closed the massive door.');
+					DisplayRoom(currentRoom);
+				}else{
+					Error('The door is already closed.');
+				}
+			}
 		}
 	},
 	

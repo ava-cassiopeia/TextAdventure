@@ -55,7 +55,14 @@ function DisplayRoom(room){
 
 function TakeAction(){
 	var rawAction = $("#action-input").val();
-	rawAction = rawAction.toLowerCase();
+	rawAction = rawAction.toLowerCase().trim();
+	
+	// check custom actions //
+	
+	if(isset(currentRoom.customActions[rawAction])){
+		currentRoom.customActions[rawAction]();
+	}
+	
 	var splitAction = rawAction.trim().split(' ');
 	
 	if(splitAction.length < 1){
