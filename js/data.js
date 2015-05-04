@@ -67,7 +67,8 @@ var rooms = {
 		name: "Open Field",
 		"description-page": "rooms/second.html",
 		attached: {
-			south: "first"
+			south: "first",
+			north: "forestEntrance"
 		}
 	},
 	
