@@ -51,6 +51,8 @@ function DisplayRoom(room){
 			}
 		});
 	}
+	
+	before = "";
 }
 
 function TakeAction(){

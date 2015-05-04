@@ -9,7 +9,6 @@ var verbs = {
 		requiredArgs: 1,
 		action: function(args){
 			var target = args[1];
-			before = "";
 			
 			if(isset(rooms[currentRoom.attached[target]])){
 				var newRoom = rooms[currentRoom.attached[target]];
