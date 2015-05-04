@@ -149,11 +149,18 @@ function Before(basicString){
 	before += "<p>" + basicString + "</p>";
 }
 
+function Clear(){
+	$(config.html.error).html("");
+	$(config.html.info).html("");
+}
+
 function Error(errorString){
+	Clear();
 	$(config.html.error).html(errorString);
 }
 
 function Info(infoString){
+	Clear();
 	$(config.html.info).html(infoString);
 }
 
