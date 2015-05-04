@@ -24,7 +24,8 @@ var config = {
 		roomname: "#name",
 		description: "#description",
 		before: "#before",
-		error: "#error"
+		error: "#error",
+		info: "#info"
 	}
 };
 
@@ -87,6 +88,21 @@ var verbs = {
 		requiredArgs: 0,
 		action: function(args){
 			DisplayRoom(currentRoom);
+		}
+	},
+	
+	"examine": {
+		requiredArgs: 1,
+		action: function(args){
+			var itemName = args[1];
+			
+			if(isset(currentRoom.items) && isset(currentRoom.items[itemName])){
+				var itemData = items[itemName];
+				
+				Info(itemData.examine);
+			}else{
+				Error("That item does not exist.");
+			}
 		}
 	},
 	

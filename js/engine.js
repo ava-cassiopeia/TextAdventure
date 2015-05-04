@@ -153,6 +153,10 @@ function Error(errorString){
 	$(config.html.error).html(errorString);
 }
 
+function Info(infoString){
+	$(config.html.info).html(infoString);
+}
+
 function ForState(state, toState, action){
 	if(currentRoom.state == state){
 		action();
