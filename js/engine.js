@@ -42,7 +42,7 @@ function DisplayRoom(room){
 				var values = currentRoom.content[index];
 				
 				if(isset(values[currentRoom.state])){
-					var value = currentRoom.state;
+					var value = values[currentRoom.state];
 					
 					$("#" + index).html(value);
 				}
