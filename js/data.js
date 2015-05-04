@@ -24,7 +24,7 @@ var verbs = {
 				
 				DisplayRoom(newRoom);
 			}else{
-				alert("You cannot move that direction, there is nothing there.");
+				Error("You cannot move that direction, there is nothing there.");
 			}
 		}
 	},

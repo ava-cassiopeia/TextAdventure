@@ -23,6 +23,7 @@ function Initialize(){
 function DisplayRoom(room){
 	$("#name").text(room.name);
 	$("#before").html(before);
+	$("#error").html('');
 	
 	if(typeof(room.description) !== 'undefined'){
 		$("#description").html(room.description);
@@ -45,13 +46,15 @@ function TakeAction(){
 	var splitAction = rawAction.trim().split(' ');
 	
 	if(splitAction.length < 1){
-		alert("Please specify a verb.");
+		Error("Please specify a verb.");
 		return;
 	}
 	
 	var verb = splitAction[0];
 	
 	ParseAction(verb, splitAction);
+	
+	$("#action-input").val('');
 }
 
 function ParseAction(verb, splitAction){
@@ -65,7 +68,7 @@ function ParseAction(verb, splitAction){
 			finalVerb = possibleVerb;
 		}
 	}else{
-		alert(verb + " is not a recognized verb.");
+		Error(verb + " is not a recognized verb.");
 		return;
 	}
 	
@@ -73,7 +76,7 @@ function ParseAction(verb, splitAction){
 	if(!(splitAction.length - 1 < finalVerb.requiredArgs)){
 		finalVerb.action(splitAction);
 	}else{
-		alert("You must specify " + finalVerb.requiredArgs + " arguments for that verb.");
+		Error("You must specify " + finalVerb.requiredArgs + " arguments for that verb.");
 	}
 }
 
@@ -81,6 +84,10 @@ function ParseAction(verb, splitAction){
 
 function Before(basicString){
 	before += "<p>" + basicString + "</p>";
+}
+
+function Error(errorString){
+	$("#error").html(errorString);
 }
 
 function ForState(state, toState, action){

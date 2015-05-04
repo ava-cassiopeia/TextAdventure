@@ -19,3 +19,7 @@ body{
 	font-weight: bold;
 	font-size: 30px;
 }
+
+#error{
+	color: #aa0000;
+}
