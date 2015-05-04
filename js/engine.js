@@ -52,7 +52,7 @@ function TakeAction(){
 function ParseAction(verb, splitAction){
 	// determine verb //
 	var finalVerb;
-	if(typeof(verbs[verb]) !== 'undefined'){
+	if(isset(verbs[verb])){
 		var possibleVerb = verbs[verb];
 		if(isset(possibleVerb.alias)){
 			finalVerb = verbs[possibleVerb.alias];

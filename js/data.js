@@ -20,7 +20,7 @@ var verbs = {
 		action: function(args){
 			var target = args[1];
 			
-			if(typeof(rooms[currentRoom.attached[target]]) !== 'undefined'){
+			if(isset(rooms[currentRoom.attached[target]])){
 				var newRoom = rooms[currentRoom.attached[target]];
 				currentRoom = newRoom;
 				DisplayRoom(newRoom);
@@ -48,6 +48,7 @@ var rooms = {
 			north: "second"
 		}
 	},
+	
 	second:{
 		name: "Second Room",
 		description: "You are now standing in the second room.",
@@ -55,6 +56,7 @@ var rooms = {
 			south: "first"
 		}
 	}
+	
 	/*second: {
 		name: "Second Room",
 		"description-page": "rooms/second.html"
